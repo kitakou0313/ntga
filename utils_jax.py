@@ -1,5 +1,5 @@
 import jax.numpy as np
-from jax.api import grad, jit, vmap
+from jax import grad, jit, vmap
 from jax import lax
 from jax.experimental.stax import logsoftmax
 from jax.config import config
@@ -11,7 +11,7 @@ from neural_tangents import stax
 # -
 
 # Kernel Construction
-_Kernel = nt.utils.kernel.Kernel
+_Kernel = nt._src.utils.kernel.Kernel
 
 def Kernel(K):
     """Create an input Kernel object out of an np.ndarray."""
@@ -132,7 +132,7 @@ def l2_loss_v2(logits, lables):
     :param labels: a np.ndarray for with one-hot true labels.
     :return: a float for loss.
     """
-    return np.linalg.norm(logits - labels)
+    return np.linalg.norm(logits - lables)
 
 @jit
 def cross_entropy_loss(logits, lables):

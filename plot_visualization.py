@@ -8,8 +8,8 @@ import numpy as onp
 from utils import *
 
 # Plotting
-from IPython.display import set_matplotlib_formats
-set_matplotlib_formats('pdf', 'svg')
+# from IPython.display import set_matplotlib_formats
+# set_matplotlib_formats('pdf', 'svg')
 import matplotlib.pyplot as plt
 colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
 

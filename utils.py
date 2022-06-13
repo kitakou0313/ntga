@@ -69,7 +69,7 @@ def plot_visualization(image, shape=None, num_row=3, num_col=5, scale=1, row_tit
 #     fig.set_facecolor('w')
     plt.tight_layout()
     if save:
-        plt.savefig(fname=fname+'.pdf', format="pdf", bbox_inches='tight')
+        plt.savefig(fname=fname+'.png', format="png", bbox_inches='tight')
     plt.show()
 
 

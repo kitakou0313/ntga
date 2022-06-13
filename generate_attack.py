@@ -1,7 +1,7 @@
 import os
 import argparse
 import jax.numpy as np
-from jax.api import grad, jit, vmap
+from jax import grad, jit, vmap
 from jax import random
 from jax.config import config
 config.update('jax_enable_x64', True)
@@ -166,9 +166,10 @@ def main():
     print("Loading dataset...")
     x_train_all, y_train_all, x_test, y_test = tuple(np.array(x) for x in get_dataset(args.dataset, None, None, flatten=flatten))
     x_train_all, y_train_all = shaffle(x_train_all, y_train_all, seed)
+    train_size = 10
     x_train, x_val = x_train_all[:train_size], x_train_all[train_size:train_size+args.val_size]
     y_train, y_val = y_train_all[:train_size], y_train_all[train_size:train_size+args.val_size]
-    
+
     # Build model
     print("Building model...")
     key = random.PRNGKey(0)
@@ -211,6 +212,7 @@ def main():
         x_train_adv = x_train_adv.reshape(-1, 28, 28, 1)
     elif args.dataset == "cifar10":
         x_train_adv = x_train_adv.reshape(-1, 32, 32, 3)
+        x_train = x_train.reshape(-1, 32, 32, 3)
     elif args.dataset == "imagenet":
         x_train_adv = x_train_adv.reshape(-1, 224, 224, 3)
     else:
@@ -218,6 +220,7 @@ def main():
     
     if not os.path.exists(args.save_path):
         os.makedirs(args.save_path)
+    np.save('{:s}x_clean_train_{:s}_ntga_{:s}.npy'.format(args.save_path, args.dataset, args.model_type), x_train)    
     np.save('{:s}x_train_{:s}_ntga_{:s}.npy'.format(args.save_path, args.dataset, args.model_type), x_train_adv)
     np.save('{:s}y_train_{:s}_ntga_{:s}.npy'.format(args.save_path, args.dataset, args.model_type), y_train_adv)
     print("================== Successfully generate NTGA! ==================")
