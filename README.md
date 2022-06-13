@@ -125,6 +125,13 @@ python plot_visualization.py --dataset cifar10 \
 	--save_path ./figure/
 ```
 
+```
+python plot_visualization.py --dataset cifar10 \
+	--x_train_path data/x_clean_train_cifar10_ntga_fnn.npy \
+	--x_train_ntga_path data/x_train_cifar10_ntga_fnn.npy \
+	--save_path ./figure/
+```
+
 The following figure shows some poisoned CIFAR-10 images. As we can see, they look almost the same as the original clean data. However, training on the clean data can achieve \~92% test accuracy, while training on the poisoned data the performance decreases sharply to \~35%.
 <p align="center">
 	<img src="./figures/figure_cifar10_visualization.png" width=80%>
