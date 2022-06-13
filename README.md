@@ -79,9 +79,16 @@ For ImageNet or another custom dataset, please specify the path to the dataset i
 Next, you can examine the effectiveness of the poisoned data crafted by NTGA by calling
 
 ```bash
-python evaluate.py --model_type densenet121 --dataset cifar10 --dtype NTGA \
+python evaluate.py --model_type cnn --dataset cifar10 --dtype NTGA \
 	--x_train_path ./data/x_train_cifar10_ntga_cnn_best.npy \
 	--y_train_path ./data/y_train_cifar10.npy \
+	--batch_size 128 --save_path ./figure/
+```
+
+```
+python evaluate.py --model_type cnn --dataset cifar10 --dtype NTGA \
+	--x_train_path ./data/x_train_cifar10_ntga_fnn.npy \
+	--y_train_path ./data/y_train_cifar10_ntga_fnn.npy \
 	--batch_size 128 --save_path ./figure/
 ```
 

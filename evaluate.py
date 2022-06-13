@@ -6,8 +6,6 @@ from utils import *
 from tqdm import tqdm
 
 # Plotting
-from IPython.display import set_matplotlib_formats
-set_matplotlib_formats('pdf', 'svg')
 import matplotlib.pyplot as plt
 import seaborn as sns
 from mpl_toolkits.axes_grid1 import make_axes_locatable
