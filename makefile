@@ -3,4 +3,4 @@ build:
 
 .PHONY: bash
 bash:
-	sudo docker run --rm --gpus all -it -v `pwd`:/app/ kitazawa/ntga bash
+	docker run --rm --gpus all -it -v `pwd`:/app/ kitazawa/ntga bash
