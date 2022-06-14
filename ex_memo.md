@@ -10,3 +10,6 @@
 - nerural-tangent=0.3.3を外して一番新しいのを持ってくる
 - jax.apiからimportしてるのがおかしい
 - これ全部直せばワンちゃん動く可能性があるのでこっちやりたい
+
+## 環境構築
+- `Dockerfile.gpu`をbuild
