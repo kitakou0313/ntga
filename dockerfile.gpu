@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.4.3-cudnn8-devel-ubuntu20.04
+FROM nvidia/cuda:11.6.0-devel-ubuntu20.04
 
 # install python 3.10
 RUN apt-get update && apt-get install -y --no-install-recommends wget build-essential libreadline-dev \ 
@@ -18,6 +18,10 @@ WORKDIR /app
 # Install deps
 COPY requirements.txt.3.10 ./
 RUN pip3 install -r requirements.txt.3.10
-RUN pip3 install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_releases.html
 
+# Install jax, jaxlib for cuda
+# Based on https://github.com/google/jax/issues/6340
+
+ENV JAXLIB_VERSION=0.3.10
+RUN pip3 install numpy scipy six wheel jaxlib==${JAXLIB_VERSION}+cuda11.cudnn82 -f https://storage.googleapis.com/jax-releases/jax_releases.html jax[cuda11_cudnn82] -f https://storage.googleapis.com/jax-releases/jax_releases.html
 CMD ["python3"]
